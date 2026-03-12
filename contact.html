@@ -15,6 +15,11 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
 
+  <meta property="og:image" content="./images:favicon.png" />
+  <meta property="og:image:alt" content="Lane 4 Fundraising emblem" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="./images:favicon.png" />
+
   <style>
     :root {
       --marine: #0e2d40;
@@ -29,6 +34,7 @@
       --muted: #61707d;
       --line: rgba(14, 45, 64, 0.1);
       --shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
+      --emblem-image: url("./images:favicon.png");
     }
 
     * {
@@ -309,7 +315,7 @@
       transform: translateY(-50%);
       width: 70px;
       height: 70px;
-      background: url("favicon.svg") center / contain no-repeat;
+      background: var(--emblem-image) center / contain no-repeat;
       opacity: 0.12;
     }
 
@@ -364,7 +370,7 @@
       transform: translateY(-50%);
       width: 90px;
       height: 90px;
-      background: url("favicon.svg") center / contain no-repeat;
+      background: var(--emblem-image) center / contain no-repeat;
       opacity: 0.06;
     }
 
