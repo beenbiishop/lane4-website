@@ -1,311 +1,648 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clients | Lane 4 Fundraising</title>
 
-<title>Clients | Lane 4 Fundraising</title>
+  <style>
+    :root {
+      --marine: #0e2d40;
+      --marine-2: #123a54;
+      --sky: #69a7bf;
+      --light: #d1e7f8;
+      --gold: #c8a36a;
+      --text: #23303b;
+      --muted: #61707d;
+      --line: rgba(14, 45, 64, 0.1);
+      --shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
+    }
 
-<link rel="icon" type="image/png" href="images/favicon.png">
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-body{
-margin:0;
-font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto;
-color:#24323d;
-background:#f5f3ef;
-line-height:1.7;
-}
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f7f5f1 0%, #f3efe8 100%);
+      line-height: 1.72;
+    }
 
-header{
-position:fixed;
-top:0;
-left:0;
-right:0;
-padding:22px 40px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:white;
-box-shadow:0 4px 20px rgba(0,0,0,.06);
-z-index:10;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.logo{
-height:42px;
-}
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
 
-.hero{
-padding:150px 40px 100px;
-text-align:center;
-color:white;
-background:linear-gradient(135deg,#0e2d40,#1f5576,#6aa7bf);
-position:relative;
-overflow:hidden;
-}
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
+    }
 
-.hero::after{
-content:"";
-position:absolute;
-inset:0;
-background-image:repeating-linear-gradient(
-90deg,
-transparent 0,
-transparent 150px,
-rgba(255,255,255,.08) 150px,
-rgba(255,255,255,.08) 152px
-);
-opacity:.15;
-}
+    header.scrolled {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom-color: rgba(14, 45, 64, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
 
-.hero h1{
-font-size:56px;
-margin:0 0 8px;
-position:relative;
-z-index:1;
-}
+    .nav {
+      min-height: 106px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: min-height 0.25s ease;
+    }
 
-.hero h2{
-font-size:28px;
-font-weight:400;
-margin:0 0 18px;
-position:relative;
-z-index:1;
-}
+    header.scrolled .nav {
+      min-height: 82px;
+    }
 
-.hero p{
-max-width:760px;
-margin:0 auto;
-font-size:18px;
-opacity:.94;
-position:relative;
-z-index:1;
-}
+    .brand {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-width: 260px;
+    }
 
-.lane-divider{
-height:80px;
-background:linear-gradient(135deg,transparent 45%,rgba(14,45,64,.08) 45% 52%,transparent 52%);
-}
+    .brand img {
+      width: auto;
+      display: block;
+      transition: opacity 0.25s ease, height 0.25s ease;
+    }
 
-.section{
-padding:90px 40px;
-}
+    .logo-white {
+      height: 72px;
+      opacity: 1;
+    }
 
-.section-head{
-max-width:760px;
-margin:0 auto 42px;
-text-align:center;
-}
+    .logo-dark {
+      height: 72px;
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-.section-head h3{
-margin:0 0 12px;
-font-size:34px;
-color:#0e2d40;
-}
+    header.scrolled .logo-white {
+      opacity: 0;
+      height: 56px;
+    }
 
-.section-head p{
-margin:0;
-color:#61707d;
-}
+    header.scrolled .logo-dark {
+      opacity: 1;
+      height: 56px;
+    }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:36px;
-max-width:1100px;
-margin:auto;
-}
+    .hamburger {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
 
-.card{
-background:white;
-padding:28px;
-border-radius:14px;
-box-shadow:0 12px 30px rgba(0,0,0,.08);
-text-align:center;
-transition:.25s;
-text-decoration:none;
-color:inherit;
-border:1px solid transparent;
-}
+    .hamburger:hover {
+      transform: translateY(-1px);
+      border-color: rgba(200, 163, 106, 0.65);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    }
 
-.card:hover{
-transform:translateY(-4px);
-border-color:rgba(105,167,191,.35);
-}
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      margin: 3px 0;
+      border-radius: 999px;
+      transition: background 0.22s ease;
+    }
 
-.logo-wrap{
-height:96px;
-display:flex;
-align-items:center;
-justify-content:center;
-}
+    header.scrolled .hamburger {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.28));
+      border-color: rgba(14, 45, 64, 0.12);
+    }
 
-.logo-whitepad{
-background:white;
-border-radius:12px;
-padding:10px;
-box-shadow:inset 0 0 0 1px rgba(0,0,0,.04);
-}
+    header.scrolled .hamburger span {
+      background: var(--marine);
+    }
 
-.logoimg{
-max-width:140px;
-max-height:80px;
-filter:grayscale(100%) brightness(.85);
-transition:filter .3s ease, transform .3s ease;
-}
+    .mobile-nav {
+      position: fixed;
+      top: 94px;
+      right: 20px;
+      width: 220px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(14, 45, 64, 0.08);
+      border-radius: 18px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+      padding: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 999;
+    }
 
-.card:hover .logoimg{
-filter:none;
-transform:scale(1.05);
-}
+    .mobile-nav.open {
+      display: flex;
+    }
 
-.name{
-margin-top:14px;
-font-size:12px;
-letter-spacing:.08em;
-text-transform:uppercase;
-color:#6b7680;
-}
+    .mobile-nav a {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: var(--marine);
+      font-weight: 600;
+    }
 
-.visit{
-margin-top:8px;
-font-size:12px;
-color:#0e2d40;
-opacity:0;
-transition:opacity .2s ease;
-}
+    .mobile-nav a:hover {
+      background: rgba(14, 45, 64, 0.04);
+      color: #7c6035;
+    }
 
-.card:hover .visit{
-opacity:1;
-}
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      padding: 150px 0 100px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(209, 231, 248, 0.34), transparent 28%),
+        radial-gradient(circle at 12% 78%, rgba(105, 167, 191, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--marine) 0%, var(--marine-2) 28%, #1d4f71 58%, var(--sky) 82%, var(--light) 100%);
+    }
 
-footer{
-padding:40px;
-text-align:center;
-font-size:14px;
-color:#666;
-}
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(118deg, transparent 36%, rgba(255, 255, 255, 0.1) 49%, transparent 61%);
+      opacity: 0.75;
+    }
 
-@media(max-width:900px){
-.hero h1{font-size:42px;}
-.hero h2{font-size:24px;}
-}
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: repeating-linear-gradient(
+        90deg,
+        transparent 0,
+        transparent 150px,
+        rgba(255, 255, 255, 0.08) 150px,
+        rgba(255, 255, 255, 0.08) 152px
+      );
+      opacity: 0.16;
+    }
 
-</style>
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .hero h2 {
+      margin: 0 0 18px;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: rgba(255,255,255,.92);
+    }
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 40ch;
+      color: rgba(255,255,255,.9);
+      font-size: 1.12rem;
+      line-height: 1.72;
+    }
+
+    .lane-divider {
+      position: relative;
+      height: 86px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(243, 243, 243, 0), rgba(243, 243, 243, 0.35));
+    }
+
+    .lane-divider::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 0 45%, rgba(14, 45, 64, 0.05) 45% 52%, transparent 52% 100%);
+    }
+
+    .lane-divider::after {
+      content: "";
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 70px;
+      height: 70px;
+      background: url("favicon.png") center / contain no-repeat;
+      opacity: 0.12;
+    }
+
+    .section {
+      position: relative;
+      padding: 100px 0;
+    }
+
+    .section-with-monogram::before {
+      content: "";
+      position: absolute;
+      right: 6%;
+      top: 18%;
+      width: 200px;
+      height: 200px;
+      background: url("favicon.png") center / contain no-repeat;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .color-band {
+      background:
+        linear-gradient(180deg, rgba(209, 231, 248, 0.42), rgba(255, 255, 255, 0.8)),
+        linear-gradient(135deg, rgba(105, 167, 191, 0.1), rgba(14, 45, 64, 0.02));
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin: 0 auto 46px;
+      text-align: center;
+    }
+
+    .section-head h3 {
+      margin: 0 0 12px;
+      font-size: 2.2rem;
+      color: var(--marine);
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.72;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 36px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(255,255,255,.74));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      padding: 28px;
+      transition: transform .25s ease, border-color .25s ease;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(105, 167, 191, 0.35);
+    }
+
+    .logo-wrap {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-whitepad {
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,.04);
+    }
+
+    .logoimg {
+      max-width: 150px;
+      max-height: 82px;
+      filter: grayscale(100%) brightness(.85);
+      transition: filter .3s ease, transform .3s ease;
+    }
+
+    .card:hover .logoimg {
+      filter: none;
+      transform: scale(1.05);
+    }
+
+    .name {
+      margin-top: 14px;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #6b7680;
+    }
+
+    .visit {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--marine);
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+
+    .card:hover .visit {
+      opacity: 1;
+    }
+
+    .footer {
+      position: relative;
+      padding: 80px 0 60px;
+      border-top: 1px solid rgba(14, 45, 64, 0.08);
+      background: rgba(255, 255, 255, 0.42);
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 90px;
+      height: 90px;
+      background: url("favicon.png") center / contain no-repeat;
+      opacity: 0.06;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer h3 {
+      margin: 0 0 6px;
+      color: var(--marine);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .footer p {
+      margin: 0;
+      color: #667480;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 980px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 32px, 1160px);
+      }
+
+      .nav {
+        min-height: 92px;
+      }
+
+      header.scrolled .nav {
+        min-height: 76px;
+      }
+
+      .logo-white,
+      .logo-dark {
+        height: 58px;
+      }
+
+      header.scrolled .logo-white,
+      header.scrolled .logo-dark {
+        height: 48px;
+      }
+
+      .hero {
+        padding: 104px 0 78px;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+        line-height: 1.05;
+      }
+
+      .hero h2 {
+        font-size: 1.35rem;
+      }
+
+      .section {
+        padding: 88px 0;
+      }
+
+      .mobile-nav {
+        top: 82px;
+        right: 16px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header id="siteHeader">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img class="logo-white" src="logo-white.png" alt="Lane 4 Fundraising" />
+        <img class="logo-dark" src="logo-dark.png" alt="Lane 4 Fundraising" />
+      </a>
 
-<header>
-<a href="index.html"><img class="logo" src="images/logo.png"></a>
-<div>☰</div>
-</header>
+      <button class="hamburger" id="menuToggle" aria-label="Open navigation">
+        <div>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </header>
 
-<section class="hero">
-<h1>Our Clients</h1>
-<h2>Past & Present</h2>
-<p>
-We are proud to work with organizations whose missions inspire us, from arts institutions and schools to health providers and community development leaders.
-</p>
-</section>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="clients.html">Clients</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<div class="lane-divider"></div>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Our Clients</h1>
+      <h2>Past &amp; Present</h2>
+      <p>
+        We are proud to work with organizations whose missions inspire us, from arts institutions and schools to health providers and community development leaders.
+      </p>
+    </div>
+  </section>
 
-<section class="section">
+  <div class="lane-divider"></div>
 
-<div class="section-head">
-<h3>Past & Present Client Partners</h3>
-<p>Hover to reveal each organization in full color and click to visit their website.</p>
-</div>
+  <section class="section section-with-monogram color-band">
+    <div class="container">
+      <div class="section-head">
+        <h3>Past &amp; Present Client Partners</h3>
+        <p>Hover to reveal each organization in full color and click to visit their website.</p>
+      </div>
 
-<div class="grid">
+      <div class="grid">
 
-<a class="card" href="https://www.aihscorp.org" target="_blank">
-<div class="logo-wrap logo-whitepad"><img class="logoimg" src="images/clients/aihs.jpg"></div>
-<div class="name">American Indian Health Services</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://www.aihscorp.org" target="_blank" rel="noopener">
+          <div class="logo-wrap logo-whitepad"><img class="logoimg" src="images:clients:aihs.jpg" alt="American Indian Health Services"></div>
+          <div class="name">American Indian Health Services</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://environmentaldefensecenter.org" target="_blank">
-<div class="logo-wrap"><img class="logoimg" src="images/clients/edc.jpg"></div>
-<div class="name">Environmental Defense Center</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://environmentaldefensecenter.org" target="_blank" rel="noopener">
+          <div class="logo-wrap"><img class="logoimg" src="images:clients:edc.jpg" alt="Environmental Defense Center"></div>
+          <div class="name">Environmental Defense Center</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://lompoctheatre.org" target="_blank">
-<div class="logo-wrap"><img class="logoimg" src="images/clients/ltp.png"></div>
-<div class="name">Lompoc Theatre Project</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://lompoctheatre.org" target="_blank" rel="noopener">
+          <div class="logo-wrap"><img class="logoimg" src="images:clients:ltp.png" alt="Lompoc Theatre Project"></div>
+          <div class="name">Lompoc Theatre Project</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://merola.org" target="_blank">
-<div class="logo-wrap"><img class="logoimg" src="images/clients/merola.jpg"></div>
-<div class="name">Merola Opera Program</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://merola.org" target="_blank" rel="noopener">
+          <div class="logo-wrap"><img class="logoimg" src="images:clients:merola.jpg" alt="Merola Opera Program"></div>
+          <div class="name">Merola Opera Program</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://www.montecitotrailsfoundation.info/" target="_blank">
-<div class="logo-wrap"><img class="logoimg" src="images/clients/mtf.jpg"></div>
-<div class="name">Montecito Trails Foundation</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://www.montecitotrailsfoundation.info/" target="_blank" rel="noopener">
+          <div class="logo-wrap"><img class="logoimg" src="images:clients:mtf.jpg" alt="Montecito Trails Foundation"></div>
+          <div class="name">Montecito Trails Foundation</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://palsb.org" target="_blank">
-<div class="logo-wrap"><img class="logoimg" src="images/clients/pal.jpg"></div>
-<div class="name">Police Activities League Santa Barbara</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://palsb.org" target="_blank" rel="noopener">
+          <div class="logo-wrap"><img class="logoimg" src="images:clients:pal.jpg" alt="Police Activities League Santa Barbara"></div>
+          <div class="name">Police Activities League Santa Barbara</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://riseandshineglobal.org" target="_blank">
-<div class="logo-wrap logo-whitepad"><img class="logoimg" src="images/clients/rise-shine.png"></div>
-<div class="name">Rise & Shine</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://riseandshineglobal.org" target="_blank" rel="noopener">
+          <div class="logo-wrap logo-whitepad"><img class="logoimg" src="images:clients:rise-shine.png" alt="Rise and Shine"></div>
+          <div class="name">Rise &amp; Shine</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://somosamigos.org/" target="_blank">
-<div class="logo-wrap"><img class="logoimg" src="images/clients/somos-amigos.jpg"></div>
-<div class="name">Somos Amigos</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://somosamigos.org/" target="_blank" rel="noopener">
+          <div class="logo-wrap"><img class="logoimg" src="images:clients:somos-amigos.jpg" alt="Somos Amigos"></div>
+          <div class="name">Somos Amigos</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://statestreetballet.com" target="_blank">
-<div class="logo-wrap"><img class="logoimg" src="images/clients/ssb.jpg"></div>
-<div class="name">State Street Ballet</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://statestreetballet.com" target="_blank" rel="noopener">
+          <div class="logo-wrap"><img class="logoimg" src="images:clients:ssb.jpg" alt="State Street Ballet"></div>
+          <div class="name">State Street Ballet</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://turnerfoundation.org" target="_blank">
-<div class="logo-wrap"><img class="logoimg" src="images/clients/turner.jpg"></div>
-<div class="name">The Turner Foundation</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://turnerfoundation.org" target="_blank" rel="noopener">
+          <div class="logo-wrap"><img class="logoimg" src="images:clients:turner.jpg" alt="The Turner Foundation"></div>
+          <div class="name">The Turner Foundation</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://www.campuscalendar.ucsb.edu/department/athletics" target="_blank">
-<div class="logo-wrap logo-whitepad"><img class="logoimg" src="images/clients/ucsb.jpg"></div>
-<div class="name">UCSB</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://www.campuscalendar.ucsb.edu/department/athletics" target="_blank" rel="noopener">
+          <div class="logo-wrap logo-whitepad"><img class="logoimg" src="images:clients:ucsb.jpg" alt="UCSB"></div>
+          <div class="name">UCSB</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://wevonline.org" target="_blank">
-<div class="logo-wrap"><img class="logoimg" src="images/clients/wev.jpg"></div>
-<div class="name">Women's Economic Ventures</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://wevonline.org" target="_blank" rel="noopener">
+          <div class="logo-wrap"><img class="logoimg" src="images:clients:wev.jpg" alt="Women's Economic Ventures"></div>
+          <div class="name">Women's Economic Ventures</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-<a class="card" href="https://www.worldtelehealthinitiative.org/" target="_blank">
-<div class="logo-wrap logo-whitepad"><img class="logoimg" src="images/clients/wti.jpg"></div>
-<div class="name">World Telehealth Initiative</div>
-<div class="visit">Visit site ↗</div>
-</a>
+        <a class="card" href="https://www.worldtelehealthinitiative.org/" target="_blank" rel="noopener">
+          <div class="logo-wrap logo-whitepad"><img class="logoimg" src="images:clients:wti.jpg" alt="World Telehealth Initiative"></div>
+          <div class="name">World Telehealth Initiative</div>
+          <div class="visit">Visit site ↗</div>
+        </a>
 
-</div>
-</section>
+      </div>
+    </div>
+  </section>
 
-<footer>
-Lane 4 Fundraising<br>
-Santa Barbara, California
-</footer>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Lane 4 Fundraising</h3>
+        <p>Strategic partnership to unlock your fundraising potential.</p>
+      </div>
+      <div>
+        <p>Santa Barbara, California<br />© Lane 4 Fundraising</p>
+      </div>
+    </div>
+  </footer>
 
+  <script>
+    const header = document.getElementById("siteHeader");
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    menuToggle.addEventListener("click", () => {
+      mobileNav.classList.toggle("open");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
+        mobileNav.classList.remove("open");
+      }
+    });
+  </script>
 </body>
 </html>
