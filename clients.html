@@ -5,13 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clients | Lane 4 Fundraising</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Roboto+Slab:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
   <style>
     :root {
       --marine: #0e2d40;
       --marine-2: #123a54;
       --sky: #69a7bf;
       --light: #d1e7f8;
-      --gold: #c8a36a;
+      --gray: #f3f3f3;
+      --sand: #f8e2d1;
+      --clay: #bf8169;
+      --coffee: #40210e;
       --text: #23303b;
       --muted: #61707d;
       --line: rgba(14, 45, 64, 0.1);
@@ -21,11 +34,15 @@
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: "Libre Franklin", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, #f7f5f1 0%, #f3efe8 100%);
+      background: linear-gradient(180deg, var(--gray) 0%, #f5eae2 100%);
       line-height: 1.72;
     }
 
@@ -105,7 +122,7 @@
       width: 52px;
       height: 52px;
       border-radius: 14px;
-      display: grid;
+      display: none;
       place-items: center;
       border: 1px solid rgba(255, 255, 255, 0.24);
       background: rgba(255, 255, 255, 0.06);
@@ -116,7 +133,7 @@
 
     .hamburger:hover {
       transform: translateY(-1px);
-      border-color: rgba(200, 163, 106, 0.65);
+      border-color: rgba(191, 129, 105, 0.65);
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
     }
 
@@ -136,6 +153,34 @@
     }
 
     header.scrolled .hamburger span { background: var(--marine); }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .desktop-nav a {
+      padding: 8px 14px;
+      border-radius: 10px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .desktop-nav a:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    header.scrolled .desktop-nav a {
+      color: var(--marine);
+    }
+
+    header.scrolled .desktop-nav a:hover {
+      background: rgba(14, 45, 64, 0.06);
+    }
 
     .mobile-nav {
       position: fixed;
@@ -165,7 +210,7 @@
 
     .mobile-nav a:hover {
       background: rgba(14, 45, 64, 0.04);
-      color: #7c6035;
+      color: var(--coffee);
     }
 
     .hero {
@@ -255,7 +300,7 @@
       transform: translateY(-50%);
       width: 70px;
       height: 70px;
-      background: url("./favicon.png") center / contain no-repeat;
+      background: url("favicon.svg") center / contain no-repeat;
       opacity: 0.12;
     }
 
@@ -271,7 +316,7 @@
       top: 18%;
       width: 200px;
       height: 200px;
-      background: url("./favicon.png") center / contain no-repeat;
+      background: url("favicon.svg") center / contain no-repeat;
       opacity: 0.05;
       pointer-events: none;
     }
@@ -288,7 +333,7 @@
       text-align: center;
     }
 
-    .section-head h3 {
+    .section-head h2 {
       margin: 0 0 12px;
       font-size: 2.2rem;
       color: var(--marine);
@@ -344,13 +389,18 @@
     .logoimg {
       max-width: 150px;
       max-height: 82px;
-      filter: grayscale(100%) brightness(.85);
       transition: filter .3s ease, transform .3s ease;
     }
 
-    .card:hover .logoimg {
-      filter: none;
-      transform: scale(1.05);
+    @media (hover: hover) and (pointer: fine) {
+      .logoimg {
+        filter: grayscale(100%) brightness(.85);
+      }
+
+      .card:hover .logoimg {
+        filter: none;
+        transform: scale(1.05);
+      }
     }
 
     .name {
@@ -358,7 +408,7 @@
       font-size: 12px;
       letter-spacing: .08em;
       text-transform: uppercase;
-      color: #6b7680;
+      color: var(--muted);
     }
 
     .visit {
@@ -386,7 +436,7 @@
       transform: translateY(-50%);
       width: 90px;
       height: 90px;
-      background: url("./favicon.png") center / contain no-repeat;
+      background: url("favicon.svg") center / contain no-repeat;
       opacity: 0.06;
     }
 
@@ -407,7 +457,7 @@
 
     .footer p {
       margin: 0;
-      color: #667480;
+      color: var(--muted);
       line-height: 1.7;
     }
 
@@ -416,7 +466,7 @@
     }
 
     @media (max-width: 760px) {
-      .container { width: min(100% - 32px, 1160px); }
+      .container { width: min(calc(100% - 32px), 1160px); }
       .nav { min-height: 92px; }
       header.scrolled .nav { min-height: 76px; }
 
@@ -435,6 +485,14 @@
         top: 82px;
         right: 16px;
       }
+
+      .hamburger {
+        display: grid;
+      }
+
+      .desktop-nav {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -446,17 +504,25 @@
         <img class="logo-dark" src="./logo-dark.png" alt="Lane 4 Fundraising" />
       </a>
 
-      <button class="hamburger" id="menuToggle" aria-label="Open navigation">
+      <button class="hamburger" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false">
         <div>
           <span></span>
           <span></span>
           <span></span>
         </div>
       </button>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="clients.html">Clients</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <nav class="mobile-nav" id="mobileNav">
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
@@ -479,8 +545,7 @@
   <section class="section section-with-monogram color-band">
     <div class="container">
       <div class="section-head">
-        <h3>Past &amp; Present Client Partners</h3>
-        <p>Hover to reveal each organization in full color and click to visit their website.</p>
+        <h2>Past &amp; Present Client Partners</h2>
       </div>
 
       <div class="grid">
@@ -578,29 +643,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    const header = document.getElementById("siteHeader");
-    const menuToggle = document.getElementById("menuToggle");
-    const mobileNav = document.getElementById("mobileNav");
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 20) {
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
-    });
-
-    menuToggle.addEventListener("click", () => {
-      mobileNav.classList.toggle("open");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
-        mobileNav.classList.remove("open");
-      }
-    });
-  </script>
+  <script src="site.js"></script>
 </body>
 </html>

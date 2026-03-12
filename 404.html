@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | Lane 4 Fundraising</title>
+  <meta name="robots" content="noindex" />
+  <title>Page Not Found | Lane 4 Fundraising</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,22 +36,17 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-    }
-
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: "Libre Franklin", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, var(--gray) 0%, #f5eae2 100%);
-      line-height: 1.72;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(209, 231, 248, 0.34), transparent 28%),
+        radial-gradient(circle at 12% 78%, rgba(105, 167, 191, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--marine) 0%, var(--marine-2) 28%, #1d4f71 58%, var(--sky) 82%, var(--light) 100%);
+      display: flex;
+      flex-direction: column;
     }
 
     a {
@@ -101,8 +97,8 @@
     }
 
     .brand img {
-      width: auto;
       display: block;
+      width: auto;
       transition: opacity 0.25s ease, height 0.25s ease;
     }
 
@@ -229,170 +225,90 @@
       color: var(--coffee);
     }
 
-    .hero {
-      position: relative;
-      overflow: hidden;
-      color: white;
-      padding: 150px 0 100px;
-      text-align: center;
-      background:
-        radial-gradient(circle at 84% 18%, rgba(209, 231, 248, 0.34), transparent 28%),
-        radial-gradient(circle at 12% 78%, rgba(105, 167, 191, 0.18), transparent 34%),
-        linear-gradient(135deg, var(--marine) 0%, var(--marine-2) 28%, #1d4f71 58%, var(--sky) 82%, var(--light) 100%);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(118deg, transparent 36%, rgba(255, 255, 255, 0.1) 49%, transparent 61%);
-      opacity: 0.75;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: repeating-linear-gradient(
-        90deg,
-        transparent 0,
-        transparent 150px,
-        rgba(255, 255, 255, 0.08) 150px,
-        rgba(255, 255, 255, 0.08) 152px
-      );
-      opacity: 0.16;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .hero h1 {
-      margin: 0 0 18px;
-      font-size: clamp(3rem, 6vw, 4.5rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-    }
-
-    .hero p {
-      margin: 0 auto;
-      max-width: 44ch;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.12rem;
-      line-height: 1.72;
-    }
-
-    .lane-divider {
-      position: relative;
-      height: 86px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(243, 243, 243, 0), rgba(243, 243, 243, 0.35));
-    }
-
-    .lane-divider::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 0 45%, rgba(14, 45, 64, 0.05) 45% 52%, transparent 52% 100%);
-    }
-
-    .lane-divider::after {
-      content: "";
-      position: absolute;
-      right: 8%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 70px;
-      height: 70px;
-      background: url("favicon.svg") center / contain no-repeat;
-      opacity: 0.12;
-    }
-
-    .section {
-      position: relative;
-      padding: 100px 0;
-    }
-
-    .contact-card {
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.74));
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 60px;
-      box-shadow: var(--shadow);
-    }
-
-    .contact-card h2 {
-      margin: 0 0 16px;
-      font-size: 2rem;
-      color: var(--marine);
-      letter-spacing: -0.02em;
-    }
-
-    .contact-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.72;
-    }
-
-    .email {
-      margin-top: 28px;
-      font-size: 1.35rem;
-      font-weight: 600;
-      color: var(--marine);
-    }
-
-    .footer {
-      position: relative;
-      padding: 80px 0 60px;
-      border-top: 1px solid rgba(14, 45, 64, 0.08);
-      background: rgba(255, 255, 255, 0.42);
-    }
-
-    .footer::before {
-      content: "";
-      position: absolute;
-      right: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 90px;
-      height: 90px;
-      background: url("favicon.svg") center / contain no-repeat;
-      opacity: 0.06;
-    }
-
-    .footer-grid {
+    main {
+      flex: 1;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 20px;
-      align-items: center;
+      place-items: center;
+      padding: 150px 0 88px;
     }
 
-    .footer h3 {
-      margin: 0 0 6px;
-      color: var(--marine);
-      font-size: 1rem;
-      letter-spacing: 0.08em;
+    .card {
+      width: min(720px, 100%);
+      padding: 48px 42px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(14px);
+      color: white;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--sand);
       text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.82rem;
+      font-weight: 700;
     }
 
-    .footer p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(3rem, 8vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
     }
 
-    @media (max-width: 980px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
+    p {
+      margin: 0 auto;
+      max-width: 34rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.08rem;
+      line-height: 1.72;
+    }
+
+    .actions {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 176px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--sand), var(--clay));
+      color: var(--marine);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.16);
+    }
+
+    .button-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    footer {
+      padding: 0 0 34px;
+      color: rgba(255, 255, 255, 0.78);
+      text-align: center;
+      font-size: 0.95rem;
     }
 
     @media (max-width: 760px) {
@@ -418,21 +334,21 @@
         height: 48px;
       }
 
-      .hero {
-        padding: 104px 0 78px;
+      main {
+        padding-top: 116px;
       }
 
-      .hero h1 {
-        font-size: 2.4rem;
-        line-height: 1.05;
+      .card {
+        padding: 36px 24px;
+        border-radius: 24px;
       }
 
-      .section {
-        padding: 88px 0;
+      h1 {
+        font-size: 2.7rem;
       }
 
-      .contact-card {
-        padding: 40px 28px;
+      p {
+        font-size: 1rem;
       }
 
       .mobile-nav {
@@ -447,13 +363,21 @@
       .desktop-nav {
         display: none;
       }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <header id="siteHeader">
     <div class="container nav">
-      <a class="brand" href="index.html">
+      <a class="brand" href="index.html" aria-label="Lane 4 Fundraising home">
         <img class="logo-white" src="logo-white.png" alt="Lane 4 Fundraising" />
         <img class="logo-dark" src="logo-dark.png" alt="Lane 4 Fundraising" />
       </a>
@@ -484,41 +408,24 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <section class="hero">
-    <div class="container hero-inner">
-      <h1>Contact</h1>
-      <p>
-        If you are exploring ways to strengthen your organization's fundraising capacity, we would welcome the conversation.
-      </p>
-    </div>
-  </section>
-
-  <div class="lane-divider"></div>
-
-  <section class="section">
+  <main>
     <div class="container">
-      <div class="contact-card">
-        <h2>Start a Conversation</h2>
+      <section class="card" aria-labelledby="not-found-title">
+        <p class="eyebrow">404 Error</p>
+        <h1 id="not-found-title">This lane doesn’t lead anywhere.</h1>
         <p>
-          Lane 4 Fundraising partners with mission-driven organizations to strengthen fundraising strategy, leadership, and long-term philanthropic growth.
+          The page you requested could not be found. Return home, explore our services, or contact Lane 4 Fundraising and we will help you get where you need to go.
         </p>
-        <div class="email">
-          <a href="mailto:hello@lane4fundraising.com">hello@lane4fundraising.com</a>
+        <div class="actions">
+          <a class="button button-primary" href="index.html">Back to Home</a>
+          <a class="button button-secondary" href="contact.html">Contact Us</a>
         </div>
-      </div>
+      </section>
     </div>
-  </section>
+  </main>
 
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <h3>Lane 4 Fundraising</h3>
-        <p>Strategic partnership to unlock your fundraising potential.</p>
-      </div>
-      <div>
-        <p>Santa Barbara, California<br />© Lane 4 Fundraising</p>
-      </div>
-    </div>
+  <footer>
+    <div class="container">Santa Barbara, California · © Lane 4 Fundraising</div>
   </footer>
   <script src="site.js"></script>
 </body>

@@ -5,14 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services | Lane 4 Fundraising</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Roboto+Slab:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
   <style>
     :root {
       --marine: #0e2d40;
       --marine-2: #123a54;
       --sky: #69a7bf;
       --light: #d1e7f8;
-      --gold: #c8a36a;
-      --gold-soft: #d7b988;
+      --gray: #f3f3f3;
+      --sand: #f8e2d1;
+      --clay: #bf8169;
+      --coffee: #40210e;
       --text: #23303b;
       --muted: #61707d;
       --line: rgba(14, 45, 64, 0.1);
@@ -27,11 +39,17 @@
       scroll-behavior: smooth;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: "Libre Franklin", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, #f7f5f1 0%, #f3efe8 100%);
+      background: linear-gradient(180deg, var(--gray) 0%, #f5eae2 100%);
       line-height: 1.72;
     }
 
@@ -116,7 +134,7 @@
       width: 52px;
       height: 52px;
       border-radius: 14px;
-      display: grid;
+      display: none;
       place-items: center;
       border: 1px solid rgba(255, 255, 255, 0.24);
       background: rgba(255, 255, 255, 0.06);
@@ -127,7 +145,7 @@
 
     .hamburger:hover {
       transform: translateY(-1px);
-      border-color: rgba(200, 163, 106, 0.65);
+      border-color: rgba(191, 129, 105, 0.65);
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
     }
 
@@ -148,6 +166,34 @@
 
     header.scrolled .hamburger span {
       background: var(--marine);
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .desktop-nav a {
+      padding: 8px 14px;
+      border-radius: 10px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .desktop-nav a:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    header.scrolled .desktop-nav a {
+      color: var(--marine);
+    }
+
+    header.scrolled .desktop-nav a:hover {
+      background: rgba(14, 45, 64, 0.06);
     }
 
     .mobile-nav {
@@ -180,14 +226,14 @@
 
     .mobile-nav a:hover {
       background: rgba(14, 45, 64, 0.04);
-      color: #7c6035;
+      color: var(--coffee);
     }
 
     .hero {
       position: relative;
       overflow: hidden;
       color: white;
-      padding: 150px 0 98px;
+      padding: 150px 0 100px;
       background:
         radial-gradient(circle at 84% 18%, rgba(209, 231, 248, 0.34), transparent 28%),
         radial-gradient(circle at 12% 78%, rgba(105, 167, 191, 0.18), transparent 34%),
@@ -218,63 +264,37 @@
       opacity: 0.16;
     }
 
-    .hero-grid {
+    .hero-inner {
       position: relative;
       z-index: 2;
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 42px;
-      align-items: start;
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .hero h1 {
-      margin: 0 0 18px;
+      margin: 0 0 20px;
       font-size: clamp(3rem, 6vw, 5rem);
       line-height: 1.02;
       letter-spacing: -0.04em;
-      max-width: 11ch;
       text-wrap: balance;
     }
 
     .hero p {
-      margin: 0;
-      max-width: 36ch;
+      margin: 0 auto;
+      max-width: 52ch;
       color: rgba(255, 255, 255, 0.9);
       font-size: 1.12rem;
       line-height: 1.72;
     }
 
     .hero-note {
-      margin-top: 22px;
-      color: #f2ddba;
+      margin-top: 24px;
+      color: var(--sand);
       text-transform: uppercase;
       letter-spacing: 0.16em;
       font-size: 0.84rem;
       font-weight: 700;
-    }
-
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 26px;
-      padding: 28px;
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16);
-      backdrop-filter: blur(6px);
-    }
-
-    .hero-card h3 {
-      margin: 0 0 14px;
-      font-size: 1.45rem;
-      color: white;
-      line-height: 1.2;
-    }
-
-    .hero-card p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.86);
-      line-height: 1.72;
-      max-width: none;
-      font-size: 1rem;
     }
 
     .lane-divider {
@@ -299,7 +319,7 @@
       transform: translateY(-50%);
       width: 70px;
       height: 70px;
-      background: url("favicon.png") center / contain no-repeat;
+      background: url("favicon.svg") center / contain no-repeat;
       opacity: 0.12;
     }
 
@@ -315,7 +335,7 @@
       top: 20%;
       width: 200px;
       height: 200px;
-      background: url("favicon.png") center / contain no-repeat;
+      background: url("favicon.svg") center / contain no-repeat;
       opacity: 0.05;
       pointer-events: none;
     }
@@ -387,14 +407,14 @@
 
     .tagline {
       font-weight: 700;
-      color: #35567b;
+      color: var(--marine-2);
       margin-bottom: 16px;
       font-size: 1.05rem;
     }
 
     .service-card p {
       margin: 0 0 14px;
-      color: #53626f;
+      color: var(--muted);
       line-height: 1.8;
       max-width: 950px;
     }
@@ -418,7 +438,7 @@
       transform: translateY(-50%);
       width: 90px;
       height: 90px;
-      background: url("favicon.png") center / contain no-repeat;
+      background: url("favicon.svg") center / contain no-repeat;
       opacity: 0.06;
     }
 
@@ -439,12 +459,11 @@
 
     .footer p {
       margin: 0;
-      color: #667480;
+      color: var(--muted);
       line-height: 1.7;
     }
 
     @media (max-width: 980px) {
-      .hero-grid,
       .footer-grid {
         grid-template-columns: 1fr;
       }
@@ -452,7 +471,7 @@
 
     @media (max-width: 760px) {
       .container {
-        width: min(100% - 32px, 1160px);
+        width: min(calc(100% - 32px), 1160px);
       }
 
       .nav {
@@ -481,15 +500,14 @@
         font-size: 2.4rem;
         line-height: 1.05;
         max-width: 11ch;
-        margin-bottom: 16px;
+        margin: 0 auto 16px;
       }
 
       .section {
         padding: 88px 0;
       }
 
-      .service-card,
-      .hero-card {
+      .service-card {
         padding: 28px 22px;
       }
 
@@ -500,6 +518,14 @@
       .mobile-nav {
         top: 82px;
         right: 16px;
+      }
+
+      .hamburger {
+        display: grid;
+      }
+
+      .desktop-nav {
+        display: none;
       }
     }
   </style>
@@ -512,17 +538,25 @@
         <img class="logo-dark" src="logo-dark.png" alt="Lane 4 Fundraising" />
       </a>
 
-      <button class="hamburger" id="menuToggle" aria-label="Open navigation">
+      <button class="hamburger" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false">
         <div>
           <span></span>
           <span></span>
           <span></span>
         </div>
       </button>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="clients.html">Clients</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <nav class="mobile-nav" id="mobileNav">
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
@@ -531,21 +565,12 @@
   </nav>
 
   <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <h1>Strategic partnership to unlock your fundraising potential.</h1>
-        <p>
-          A full service fundraising partnership designed to bring structure, confidence, momentum, and measurable results to mission-driven organizations ready to grow.
-        </p>
-        <div class="hero-note">Substantial. Structured. Actionable.</div>
-      </div>
-
-      <div class="hero-card">
-        <h3>Campaigns. Coaching. Strategy.</h3>
-        <p>
-          We help mission-driven organizations strengthen fundraising systems, prepare for growth, and move major initiatives forward with greater clarity and discipline.
-        </p>
-      </div>
+    <div class="container hero-inner">
+      <h1>Strategic partnership to unlock your fundraising potential.</h1>
+      <p>
+        A full service fundraising partnership designed to bring structure, confidence, momentum, and measurable results to mission-driven organizations ready to grow.
+      </p>
+      <div class="hero-note">Substantial. Structured. Actionable.</div>
     </div>
   </section>
 
@@ -643,29 +668,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    const header = document.getElementById("siteHeader");
-    const menuToggle = document.getElementById("menuToggle");
-    const mobileNav = document.getElementById("mobileNav");
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 20) {
-        header.classList.add("scrolled");
-      } else {
-        header.classList.remove("scrolled");
-      }
-    });
-
-    menuToggle.addEventListener("click", () => {
-      mobileNav.classList.toggle("open");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
-        mobileNav.classList.remove("open");
-      }
-    });
-  </script>
+  <script src="site.js"></script>
 </body>
 </html>
