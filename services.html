@@ -1,679 +1,812 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services | Lane 4 Fundraising</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services | Lane 4 Fundraising</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Roboto+Slab:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Roboto+Slab:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="icon" href="favicon.ico" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
 
-  <meta property="og:image" content="./images:favicon.png" />
-  <meta property="og:image:alt" content="Lane 4 Fundraising emblem" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="./images:favicon.png" />
+    <meta property="og:image" content="./images/favicon.png" />
+    <meta property="og:image:alt" content="Lane 4 Fundraising emblem" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="./images/favicon.png" />
 
-  <style>
-    :root {
-      --marine: #0e2d40;
-      --marine-2: #123a54;
-      --sky: #69a7bf;
-      --light: #d1e7f8;
-      --gray: #f3f3f3;
-      --sand: #f8e2d1;
-      --clay: #bf8169;
-      --coffee: #40210e;
-      --text: #23303b;
-      --muted: #61707d;
-      --line: rgba(14, 45, 64, 0.1);
-      --shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
-      --emblem-image: url("./images:favicon.png");
-    }
+    <style>
+      :root {
+        --marine: #0e2d40;
+        --marine-2: #123a54;
+        --sky: #69a7bf;
+        --light: #d1e7f8;
+        --gray: #f3f3f3;
+        --sand: #f8e2d1;
+        --clay: #bf8169;
+        --coffee: #40210e;
+        --text: #23303b;
+        --muted: #61707d;
+        --line: rgba(14, 45, 64, 0.1);
+        --shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
+        --emblem-image: url("./images/favicon.png");
+      }
 
-    * {
-      box-sizing: border-box;
-    }
+      * {
+        box-sizing: border-box;
+      }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
       html {
-        scroll-behavior: auto;
+        scroll-behavior: smooth;
       }
-    }
 
-    body {
-      margin: 0;
-      font-family: "Libre Franklin", Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, var(--gray) 0%, #f5eae2 100%);
-      line-height: 1.72;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1160px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: transparent;
-      border-bottom: 1px solid transparent;
-      transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, backdrop-filter 0.25s ease;
-    }
-
-    header.scrolled {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(14px);
-      border-bottom-color: rgba(14, 45, 64, 0.08);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-
-    .nav {
-      min-height: 106px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: min-height 0.25s ease;
-    }
-
-    header.scrolled .nav {
-      min-height: 82px;
-    }
-
-    .brand {
-      position: relative;
-      display: flex;
-      align-items: center;
-      min-width: 260px;
-    }
-
-    .brand img {
-      width: auto;
-      display: block;
-      transition: opacity 0.25s ease, height 0.25s ease;
-    }
-
-    .logo-white {
-      height: 72px;
-      opacity: 1;
-    }
-
-    .logo-dark {
-      height: 72px;
-      opacity: 0;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    header.scrolled .logo-white {
-      opacity: 0;
-      height: 56px;
-    }
-
-    header.scrolled .logo-dark {
-      opacity: 1;
-      height: 56px;
-    }
-
-    .hamburger {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      display: none;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(8px);
-      cursor: pointer;
-      transition: all 0.22s ease;
-    }
-
-    .hamburger:hover {
-      transform: translateY(-1px);
-      border-color: rgba(191, 129, 105, 0.65);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    .hamburger span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: #fff;
-      margin: 3px 0;
-      border-radius: 999px;
-      transition: background 0.22s ease;
-    }
-
-    header.scrolled .hamburger {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.28));
-      border-color: rgba(14, 45, 64, 0.12);
-    }
-
-    header.scrolled .hamburger span {
-      background: var(--marine);
-    }
-
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .desktop-nav a {
-      padding: 8px 14px;
-      border-radius: 10px;
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 600;
-      font-size: 0.95rem;
-      letter-spacing: 0.01em;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-
-    .desktop-nav a:hover {
-      background: rgba(255, 255, 255, 0.14);
-    }
-
-    header.scrolled .desktop-nav a {
-      color: var(--marine);
-    }
-
-    header.scrolled .desktop-nav a:hover {
-      background: rgba(14, 45, 64, 0.06);
-    }
-
-    .mobile-nav {
-      position: fixed;
-      top: 94px;
-      right: 20px;
-      width: 220px;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid rgba(14, 45, 64, 0.08);
-      border-radius: 18px;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
-      padding: 12px;
-      display: none;
-      flex-direction: column;
-      gap: 2px;
-      z-index: 999;
-    }
-
-    .mobile-nav.open {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      display: block;
-      padding: 12px 14px;
-      border-radius: 12px;
-      color: var(--marine);
-      font-weight: 600;
-    }
-
-    .mobile-nav a:hover {
-      background: rgba(14, 45, 64, 0.04);
-      color: var(--coffee);
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      color: white;
-      padding: 150px 0 100px;
-      background:
-        radial-gradient(circle at 84% 18%, rgba(209, 231, 248, 0.34), transparent 28%),
-        radial-gradient(circle at 12% 78%, rgba(105, 167, 191, 0.18), transparent 34%),
-        linear-gradient(135deg, var(--marine) 0%, var(--marine-2) 28%, #1d4f71 58%, var(--sky) 82%, var(--light) 100%);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(118deg, transparent 36%, rgba(255, 255, 255, 0.1) 49%, transparent 61%);
-      opacity: 0.75;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: repeating-linear-gradient(
-        90deg,
-        transparent 0,
-        transparent 150px,
-        rgba(255, 255, 255, 0.08) 150px,
-        rgba(255, 255, 255, 0.08) 152px
-      );
-      opacity: 0.16;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 820px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .hero h1 {
-      margin: 0 0 20px;
-      font-size: clamp(3rem, 6vw, 5rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      text-wrap: balance;
-    }
-
-    .hero p {
-      margin: 0 auto;
-      max-width: 52ch;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.12rem;
-      line-height: 1.72;
-    }
-
-    .hero-note {
-      margin-top: 24px;
-      color: var(--sand);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.84rem;
-      font-weight: 700;
-    }
-
-    .lane-divider {
-      position: relative;
-      height: 86px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(243, 243, 243, 0), rgba(243, 243, 243, 0.35));
-    }
-
-    .lane-divider::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 0 45%, rgba(14, 45, 64, 0.05) 45% 52%, transparent 52% 100%);
-    }
-
-    .lane-divider::after {
-      content: "";
-      position: absolute;
-      right: 8%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 70px;
-      height: 70px;
-      background: var(--emblem-image) center / contain no-repeat;
-      opacity: 0.12;
-    }
-
-    .section {
-      position: relative;
-      padding: 100px 0;
-    }
-
-    .section-with-monogram::before {
-      content: "";
-      position: absolute;
-      right: 6%;
-      top: 20%;
-      width: 200px;
-      height: 200px;
-      background: var(--emblem-image) center / contain no-repeat;
-      opacity: 0.05;
-      pointer-events: none;
-    }
-
-    .color-band {
-      background:
-        linear-gradient(180deg, rgba(209, 231, 248, 0.42), rgba(255, 255, 255, 0.8)),
-        linear-gradient(135deg, rgba(105, 167, 191, 0.1), rgba(14, 45, 64, 0.02));
-    }
-
-    .section-head {
-      max-width: 820px;
-      margin: 0 auto 52px;
-      text-align: center;
-    }
-
-    .section-head h2 {
-      margin: 0 0 14px;
-      font-size: 2.35rem;
-      color: var(--marine);
-      letter-spacing: -0.02em;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.06rem;
-      line-height: 1.75;
-    }
-
-    .service-stack {
-      display: grid;
-      gap: 26px;
-    }
-
-    .service-card {
-      position: relative;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.74));
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 34px;
-      box-shadow: var(--shadow);
-    }
-
-    .service-card::before {
-      content: "";
-      position: absolute;
-      top: 22px;
-      left: 34px;
-      width: 42px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--sky), rgba(105, 167, 191, 0.25));
-    }
-
-    .service-card::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, rgba(105, 167, 191, 0.72), transparent);
-    }
-
-    .service-card h3 {
-      margin: 22px 0 8px;
-      color: var(--marine);
-      font-size: 2rem;
-      letter-spacing: -0.02em;
-    }
-
-    .tagline {
-      font-weight: 700;
-      color: var(--marine-2);
-      margin-bottom: 16px;
-      font-size: 1.05rem;
-    }
-
-    .service-card p {
-      margin: 0 0 14px;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 950px;
-    }
-
-    .service-card p:last-child {
-      margin-bottom: 0;
-    }
-
-    .footer {
-      position: relative;
-      padding: 80px 0 60px;
-      border-top: 1px solid rgba(14, 45, 64, 0.08);
-      background: rgba(255, 255, 255, 0.42);
-    }
-
-    .footer::before {
-      content: "";
-      position: absolute;
-      right: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 90px;
-      height: 90px;
-      background: var(--emblem-image) center / contain no-repeat;
-      opacity: 0.06;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .footer h3 {
-      margin: 0 0 6px;
-      color: var(--marine);
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .footer p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    @media (max-width: 980px) {
-      .footer-grid {
-        grid-template-columns: 1fr;
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
       }
-    }
 
-    @media (max-width: 760px) {
+      body {
+        margin: 0;
+        font-family:
+          "Libre Franklin",
+          Inter,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: var(--text);
+        background: linear-gradient(180deg, var(--gray) 0%, #f5eae2 100%);
+        line-height: 1.72;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
       .container {
-        width: min(calc(100% - 32px), 1160px);
+        width: min(1160px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: transparent;
+        border-bottom: 1px solid transparent;
+        transition:
+          background 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease,
+          backdrop-filter 0.25s ease;
+      }
+
+      /*noinspection CssUnusedSymbol*/
+      header.scrolled {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(14px);
+        border-bottom-color: rgba(14, 45, 64, 0.08);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       }
 
       .nav {
-        min-height: 92px;
+        min-height: 106px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: min-height 0.25s ease;
       }
 
       header.scrolled .nav {
-        min-height: 76px;
+        min-height: 82px;
       }
 
-      .logo-white,
+      .brand {
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-width: 260px;
+      }
+
+      .brand img {
+        width: auto;
+        display: block;
+        transition:
+          opacity 0.25s ease,
+          height 0.25s ease;
+      }
+
+      .logo-white {
+        height: 72px;
+        opacity: 1;
+      }
+
       .logo-dark {
-        height: 58px;
+        height: 72px;
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
       }
 
-      header.scrolled .logo-white,
+      header.scrolled .logo-white {
+        opacity: 0;
+        height: 56px;
+      }
+
       header.scrolled .logo-dark {
-        height: 48px;
-      }
-
-      .hero {
-        padding: 104px 0 78px;
-      }
-
-      .hero h1 {
-        font-size: 2.4rem;
-        line-height: 1.05;
-        max-width: 11ch;
-        margin: 0 auto 16px;
-      }
-
-      .section {
-        padding: 88px 0;
-      }
-
-      .service-card {
-        padding: 28px 22px;
-      }
-
-      .service-card h3 {
-        font-size: 1.65rem;
-      }
-
-      .mobile-nav {
-        top: 82px;
-        right: 16px;
+        opacity: 1;
+        height: 56px;
       }
 
       .hamburger {
-        display: grid;
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: none;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(8px);
+        cursor: pointer;
+        transition: all 0.22s ease;
+      }
+
+      .hamburger:hover {
+        transform: translateY(-1px);
+        border-color: rgba(191, 129, 105, 0.65);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .hamburger-bars {
+        display: block;
+      }
+
+      .hamburger-bars span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: #fff;
+        margin: 3px 0;
+        border-radius: 999px;
+        transition: background 0.22s ease;
+      }
+
+      header.scrolled .hamburger {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.72),
+          rgba(255, 255, 255, 0.28)
+        );
+        border-color: rgba(14, 45, 64, 0.12);
+      }
+
+      header.scrolled .hamburger-bars span {
+        background: var(--marine);
       }
 
       .desktop-nav {
-        display: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
       }
-    }
-  </style>
-</head>
-<body>
-  <header id="siteHeader">
-    <div class="container nav">
-      <a class="brand" href="index.html">
-        <img class="logo-white" src="logo-white.png" alt="Lane 4 Fundraising" />
-        <img class="logo-dark" src="logo-dark.png" alt="Lane 4 Fundraising" />
-      </a>
 
-      <button class="hamburger" id="menuToggle" type="button" aria-label="Open navigation" aria-controls="mobileNav" aria-expanded="false">
-        <div>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </button>
+      .desktop-nav a {
+        padding: 8px 14px;
+        border-radius: 10px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.01em;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
 
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="clients.html">Clients</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
+      .desktop-nav a:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
 
-  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="clients.html">Clients</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+      header.scrolled .desktop-nav a {
+        color: var(--marine);
+      }
 
-  <section class="hero">
-    <div class="container hero-inner">
-      <h1>Strategic partnership to unlock your fundraising potential.</h1>
-      <p>
-        A full service fundraising partnership designed to bring structure, confidence, momentum, and measurable results to mission-driven organizations ready to grow.
-      </p>
-      <div class="hero-note">Substantial. Structured. Actionable.</div>
-    </div>
-  </section>
+      header.scrolled .desktop-nav a:hover {
+        background: rgba(14, 45, 64, 0.06);
+      }
 
-  <div class="lane-divider"></div>
+      .mobile-nav {
+        position: fixed;
+        top: 94px;
+        right: 20px;
+        width: 220px;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(14, 45, 64, 0.08);
+        border-radius: 18px;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+        padding: 12px;
+        display: none;
+        flex-direction: column;
+        gap: 2px;
+        z-index: 999;
+      }
 
-  <section class="section color-band">
-    <div class="container">
-      <div class="section-head">
-        <h2>Our Services</h2>
+      /*noinspection CssUnusedSymbol*/
+      .mobile-nav.open {
+        display: flex;
+      }
+
+      .mobile-nav a {
+        display: block;
+        padding: 12px 14px;
+        border-radius: 12px;
+        color: var(--marine);
+        font-weight: 600;
+      }
+
+      .mobile-nav a:hover {
+        background: rgba(14, 45, 64, 0.04);
+        color: var(--coffee);
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        color: white;
+        padding: 150px 0 100px;
+        background: radial-gradient(
+            circle at 84% 18%,
+            rgba(209, 231, 248, 0.34),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 12% 78%,
+            rgba(105, 167, 191, 0.18),
+            transparent 34%
+          ),
+          linear-gradient(
+            135deg,
+            var(--marine) 0%,
+            var(--marine-2) 28%,
+            #1d4f71 58%,
+            var(--sky) 82%,
+            var(--light) 100%
+          );
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          118deg,
+          transparent 36%,
+          rgba(255, 255, 255, 0.1) 49%,
+          transparent 61%
+        );
+        opacity: 0.75;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: repeating-linear-gradient(
+          90deg,
+          transparent 0,
+          transparent 150px,
+          rgba(255, 255, 255, 0.08) 150px,
+          rgba(255, 255, 255, 0.08) 152px
+        );
+        opacity: 0.16;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 820px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .hero h1 {
+        margin: 0 0 20px;
+        font-size: clamp(3rem, 6vw, 5rem);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        text-wrap: balance;
+      }
+
+      .hero p {
+        margin: 0 auto;
+        max-width: 52ch;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.12rem;
+        line-height: 1.72;
+      }
+
+      .hero-note {
+        margin-top: 24px;
+        color: var(--sand);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.84rem;
+        font-weight: 700;
+      }
+
+      .lane-divider {
+        position: relative;
+        height: 86px;
+        overflow: hidden;
+        background: linear-gradient(
+          180deg,
+          rgba(243, 243, 243, 0),
+          rgba(243, 243, 243, 0.35)
+        );
+      }
+
+      .lane-divider::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          transparent 0 45%,
+          rgba(14, 45, 64, 0.05) 45% 52%,
+          transparent 52% 100%
+        );
+      }
+
+      .lane-divider::after {
+        content: "";
+        position: absolute;
+        right: 8%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 70px;
+        height: 70px;
+        background: var(--emblem-image) center / contain no-repeat;
+        opacity: 0.12;
+      }
+
+      .section {
+        position: relative;
+        padding: 100px 0;
+      }
+
+      .color-band {
+        background: linear-gradient(
+            180deg,
+            rgba(209, 231, 248, 0.42),
+            rgba(255, 255, 255, 0.8)
+          ),
+          linear-gradient(
+            135deg,
+            rgba(105, 167, 191, 0.1),
+            rgba(14, 45, 64, 0.02)
+          );
+      }
+
+      .section-head {
+        max-width: 820px;
+        margin: 0 auto 52px;
+        text-align: center;
+      }
+
+      .section-head h2 {
+        margin: 0 0 14px;
+        font-size: 2.35rem;
+        color: var(--marine);
+        letter-spacing: -0.02em;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.06rem;
+        line-height: 1.75;
+      }
+
+      .service-stack {
+        display: grid;
+        gap: 26px;
+      }
+
+      .service-card {
+        position: relative;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.94),
+          rgba(255, 255, 255, 0.74)
+        );
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 34px;
+        box-shadow: var(--shadow);
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 22px;
+        left: 34px;
+        width: 42px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--sky),
+          rgba(105, 167, 191, 0.25)
+        );
+      }
+
+      .service-card::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(105, 167, 191, 0.72),
+          transparent
+        );
+      }
+
+      .service-card h3 {
+        margin: 22px 0 8px;
+        color: var(--marine);
+        font-size: 2rem;
+        letter-spacing: -0.02em;
+      }
+
+      .tagline {
+        font-weight: 700;
+        color: var(--marine-2);
+        margin-bottom: 16px;
+        font-size: 1.05rem;
+      }
+
+      .service-card p {
+        margin: 0 0 14px;
+        color: var(--muted);
+        line-height: 1.8;
+        max-width: 950px;
+      }
+
+      .service-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .footer {
+        position: relative;
+        padding: 80px 0 60px;
+        border-top: 1px solid rgba(14, 45, 64, 0.08);
+        background: rgba(255, 255, 255, 0.42);
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 90px;
+        height: 90px;
+        background: var(--emblem-image) center / contain no-repeat;
+        opacity: 0.06;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .footer h3 {
+        margin: 0 0 6px;
+        color: var(--marine);
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .footer p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      @media (max-width: 980px) {
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .container {
+          width: min(calc(100% - 32px), 1160px);
+        }
+
+        .nav {
+          min-height: 92px;
+        }
+
+        header.scrolled .nav {
+          min-height: 76px;
+        }
+
+        .logo-white,
+        .logo-dark {
+          height: 58px;
+        }
+
+        header.scrolled .logo-white,
+        header.scrolled .logo-dark {
+          height: 48px;
+        }
+
+        .hero {
+          padding: 104px 0 78px;
+        }
+
+        .hero h1 {
+          font-size: 2.4rem;
+          line-height: 1.05;
+          max-width: 11ch;
+          margin: 0 auto 16px;
+        }
+
+        .section {
+          padding: 88px 0;
+        }
+
+        .service-card {
+          padding: 28px 22px;
+        }
+
+        .service-card h3 {
+          font-size: 1.65rem;
+        }
+
+        .mobile-nav {
+          top: 82px;
+          right: 16px;
+        }
+
+        .hamburger {
+          display: grid;
+        }
+
+        .desktop-nav {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="siteHeader">
+      <div class="container nav">
+        <a class="brand" href="index.html">
+          <img
+            class="logo-white"
+            src="logo-white.png"
+            alt="Lane 4 Fundraising"
+          />
+          <img class="logo-dark" src="logo-dark.png" alt="Lane 4 Fundraising" />
+        </a>
+
+        <button
+          class="hamburger"
+          id="menuToggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-controls="mobileNav"
+          aria-expanded="false"
+        >
+          <span class="hamburger-bars">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="clients.html">Clients</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="clients.html">Clients</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>Strategic partnership to unlock your fundraising potential.</h1>
         <p>
-          Lane 4 provides strategic fundraising counsel, campaign planning, executive coaching, and structured support designed to help mission-driven organizations grow with greater clarity and confidence.
+          A full service fundraising partnership designed to bring structure,
+          confidence, momentum, and measurable results to mission-driven
+          organizations ready to grow.
         </p>
+        <div class="hero-note">Substantial. Structured. Actionable.</div>
       </div>
+    </section>
 
-      <div class="service-stack">
+    <div class="lane-divider"></div>
 
-        <article class="service-card">
-          <h3>Annual Fund Design and Execution</h3>
-          <div class="tagline">Build structure, momentum, and discipline into your fundraising year.</div>
+    <section class="section color-band">
+      <div class="container">
+        <div class="section-head">
+          <h2>Our Services</h2>
           <p>
-            We partner with organizations to design and execute comprehensive annual fundraising programs that bring clarity, structure, and momentum to the development calendar.
+            Lane 4 provides strategic fundraising counsel, campaign planning,
+            executive coaching, and structured support designed to help
+            mission-driven organizations grow with greater clarity and
+            confidence.
           </p>
-          <p>
-            Through a 12 month partnership, Lane 4 helps you create a master fundraising plan that ensures every event is intentional, builds on what comes before and after, and reflects your organization values and mission. We work alongside your team to reimagine fundraising events, donor recognition, database systems, appeal cycles, major gifts, grants, sponsorships, and donor touchpoints, strengthening your fundraising culture and aligning everyone around shared goals. We also bring expertise in sponsorship mapping and packaging, transforming line items in your budget into compelling opportunities for donor support.
-          </p>
-          <p>
-            We use proven tracking tools that keep everyone on the same page, ensuring accountability and real time visibility across your development efforts. Lane 4 specializes in working with organizations with operating budgets between $500,000 and $2 million that are at a tipping point of growth, ready to implement new systems for long term sustainability.
-          </p>
-        </article>
+        </div>
 
-        <article class="service-card">
-          <h3>Feasibility Studies</h3>
-          <div class="tagline">Create clarity before the ask.</div>
-          <p>
-            A well executed feasibility study is powerful work. When done right, it draws stakeholders closer to your mission and lays the groundwork for transformational support without making the ask.
-          </p>
-          <p>
-            Our approach quickly integrates us into your leadership team, equipping you with campaign projections, messaging, and leadership alignment to make clear, confident decisions about your future.
-          </p>
-        </article>
+        <div class="service-stack">
+          <article class="service-card">
+            <h3>Annual Fund Design and Execution</h3>
+            <div class="tagline">
+              Build structure, momentum, and discipline into your fundraising
+              year.
+            </div>
+            <p>
+              We partner with organizations to design and execute comprehensive
+              annual fundraising programs that bring clarity, structure, and
+              momentum to the development calendar.
+            </p>
+            <p>
+              Through a 12 month partnership, Lane 4 helps you create a master
+              fundraising plan that ensures every event is intentional, builds
+              on what comes before and after, and reflects your organization
+              values and mission. We work alongside your team to reimagine
+              fundraising events, donor recognition, database systems, appeal
+              cycles, major gifts, grants, sponsorships, and donor touchpoints,
+              strengthening your fundraising culture and aligning everyone
+              around shared goals. We also bring expertise in sponsorship
+              mapping and packaging, transforming line items in your budget into
+              compelling opportunities for donor support.
+            </p>
+            <p>
+              We use proven tracking tools that keep everyone on the same page,
+              ensuring accountability and real time visibility across your
+              development efforts. Lane 4 specializes in working with
+              organizations with operating budgets between $500,000 and $2
+              million that are at a tipping point of growth, ready to implement
+              new systems for long term sustainability.
+            </p>
+          </article>
 
-        <article class="service-card">
-          <h3>Capital Campaigns and Special Initiatives</h3>
-          <div class="tagline">Align leadership and strategy around transformational growth.</div>
-          <p>
-            We partner with organizations ready to make transformative change through major funding initiatives. This may include capital or endowment campaigns, planned and legacy giving programs, anniversary milestones, or programmatic initiatives.
-          </p>
-          <p>
-            By developing a strategic campaign plan, aligning leadership, coaching solicitation teams, conducting prospect research, and partnering with you on key asks, we craft strategies that help you reach your goals and take the next big step forward.
-          </p>
-        </article>
+          <article class="service-card">
+            <h3>Feasibility Studies</h3>
+            <div class="tagline">Create clarity before the ask.</div>
+            <p>
+              A well executed feasibility study is powerful work. When done
+              right, it draws stakeholders closer to your mission and lays the
+              groundwork for transformational support without making the ask.
+            </p>
+            <p>
+              Our approach quickly integrates us into your leadership team,
+              equipping you with campaign projections, messaging, and leadership
+              alignment to make clear, confident decisions about your future.
+            </p>
+          </article>
 
-        <article class="service-card">
-          <h3>Executive Fundraising Coaching</h3>
-          <div class="tagline">Help leaders become stronger, more confident fundraisers.</div>
-          <p>
-            Leadership teams often have executive coaches, but rarely fundraising coaches. Lane 4 provides specialized coaching partnerships for chief executives and executive directors to help them excel in solicitation and closing gifts.
-          </p>
-          <p>
-            This can include positioning your development director for success, inspiring board engagement, and creating compelling sponsorship opportunities that deepen relationships. We also coach directors of development, advise on building a strong fundraising culture, and share best practices from our experience in fundraising and executive leadership.
-          </p>
-        </article>
+          <article class="service-card">
+            <h3>Capital Campaigns and Special Initiatives</h3>
+            <div class="tagline">
+              Align leadership and strategy around transformational growth.
+            </div>
+            <p>
+              We partner with organizations ready to make transformative change
+              through major funding initiatives. This may include capital or
+              endowment campaigns, planned and legacy giving programs,
+              anniversary milestones, or programmatic initiatives.
+            </p>
+            <p>
+              By developing a strategic campaign plan, aligning leadership,
+              coaching solicitation teams, conducting prospect research, and
+              partnering with you on key asks, we craft strategies that help you
+              reach your goals and take the next big step forward.
+            </p>
+          </article>
 
-        <article class="service-card">
-          <h3>Retreats and Facilitation</h3>
-          <div class="tagline">Bring teams together around clear priorities and next steps.</div>
-          <p>
-            Well planned retreats and committee meetings give everyone a voice and align your team around shared priorities. Lane 4 facilitates group strategy sessions that spark fresh thinking, clarify priorities, highlight strengths, and leave participants energized and united.
-          </p>
-          <p>
-            Whether you need a planning session to align board and administrative priorities or a focused retreat on fundraising skills, we help design sessions that move your organization toward its goals.
-          </p>
-        </article>
+          <article class="service-card">
+            <h3>Executive Fundraising Coaching</h3>
+            <div class="tagline">
+              Help leaders become stronger, more confident fundraisers.
+            </div>
+            <p>
+              Leadership teams often have executive coaches, but rarely
+              fundraising coaches. Lane 4 provides specialized coaching
+              partnerships for chief executives and executive directors to help
+              them excel in solicitation and closing gifts.
+            </p>
+            <p>
+              This can include positioning your development director for
+              success, inspiring board engagement, and creating compelling
+              sponsorship opportunities that deepen relationships. We also coach
+              directors of development, advise on building a strong fundraising
+              culture, and share best practices from our experience in
+              fundraising and executive leadership.
+            </p>
+          </article>
 
-        <article class="service-card">
-          <h3>Projects We Define Together</h3>
-          <div class="tagline">Tailored solutions for challenges that do not fit a standard mold.</div>
-          <p>
-            Our core services provide a strong foundation, but we also thrive on creative approaches and unconventional strategies. If your organization faces a unique challenge, we are ready to explore it with you and build something impactful together.
-          </p>
-        </article>
+          <article class="service-card">
+            <h3>Retreats and Facilitation</h3>
+            <div class="tagline">
+              Bring teams together around clear priorities and next steps.
+            </div>
+            <p>
+              Well planned retreats and committee meetings give everyone a voice
+              and align your team around shared priorities. Lane 4 facilitates
+              group strategy sessions that spark fresh thinking, clarify
+              priorities, highlight strengths, and leave participants energized
+              and united.
+            </p>
+            <p>
+              Whether you need a planning session to align board and
+              administrative priorities or a focused retreat on fundraising
+              skills, we help design sessions that move your organization toward
+              its goals.
+            </p>
+          </article>
 
+          <article class="service-card">
+            <h3>Projects We Define Together</h3>
+            <div class="tagline">
+              Tailored solutions for challenges that do not fit a standard mold.
+            </div>
+            <p>
+              Our core services provide a strong foundation, but we also thrive
+              on creative approaches and unconventional strategies. If your
+              organization faces a unique challenge, we are ready to explore it
+              with you and build something impactful together.
+            </p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <h3>Lane 4 Fundraising</h3>
-        <p>Strategic partnership to unlock your fundraising potential.</p>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>Lane 4 Fundraising</h3>
+          <p>Strategic partnership to unlock your fundraising potential.</p>
+        </div>
+        <div>
+          <p>Santa Barbara, California<br />© Lane 4 Fundraising</p>
+        </div>
       </div>
-      <div>
-        <p>Santa Barbara, California<br />© Lane 4 Fundraising</p>
-      </div>
-    </div>
-  </footer>
-  <script src="site.js"></script>
-</body>
+    </footer>
+    <script src="site.js"></script>
+  </body>
 </html>

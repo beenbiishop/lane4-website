@@ -15,7 +15,10 @@ if (menuToggle && mobileNav) {
   const setMenuState = (isOpen) => {
     mobileNav.classList.toggle("open", isOpen);
     menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation" : "Open navigation",
+    );
   };
 
   setMenuState(false);
@@ -25,7 +28,10 @@ if (menuToggle && mobileNav) {
   });
 
   document.addEventListener("click", (event) => {
-    if (!mobileNav.contains(event.target) && !menuToggle.contains(event.target)) {
+    if (
+      !mobileNav.contains(event.target) &&
+      !menuToggle.contains(event.target)
+    ) {
       setMenuState(false);
     }
   });
